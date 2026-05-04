@@ -21,21 +21,21 @@ class Treino implements JsonSerializable {
 
     public function jsonSerialize(): array {
         return [
-            'id'             => $this->id,
-            'nome'           => $this->nome,
+            'id' => $this->id,
+            'nome' => $this->nome,
             'grupo_muscular' => $this->grupo_muscular,
-            'descricao'      => $this->descricao,
-            'criado_em'      => $this->criado_em,
+            'descricao' => $this->descricao,
+            'criado_em' => $this->criado_em,
         ];
     }
 
     private function hydrate(array $row): self {
         $obj = new self($this->pdo);
-        $obj->id             = $row['id'];
-        $obj->nome           = $row['nome'];
+        $obj->id = $row['id'];
+        $obj->nome = $row['nome'];
         $obj->grupo_muscular = $row['grupo_muscular'];
-        $obj->descricao      = $row['descricao'];
-        $obj->criado_em      = $row['criado_em'];
+        $obj->descricao = $row['descricao'];
+        $obj->criado_em = $row['criado_em'];
         return $obj;
     }
 
@@ -58,9 +58,9 @@ class Treino implements JsonSerializable {
             VALUES (:nome, :grupo_muscular, :descricao)
         ");
         $stmt->execute([
-            ':nome'           => $dados['nome'],
+            ':nome' => $dados['nome'],
             ':grupo_muscular' => $dados['grupo_muscular'],
-            ':descricao'      => $dados['descricao'] ?? null,
+            ':descricao' => $dados['descricao'] ?? null,
         ]);
         return (int) $this->pdo->lastInsertId();
     }
@@ -72,10 +72,10 @@ class Treino implements JsonSerializable {
             WHERE id = :id
         ");
         return $stmt->execute([
-            ':nome'           => $dados['nome'],
+            ':nome' => $dados['nome'],
             ':grupo_muscular' => $dados['grupo_muscular'],
-            ':descricao'      => $dados['descricao'] ?? null,
-            ':id'             => $id,
+            ':descricao' => $dados['descricao'] ?? null,
+            ':id' => $id,
         ]);
     }
 
@@ -84,3 +84,5 @@ class Treino implements JsonSerializable {
         return $stmt->execute([':id' => $id]);
     }
 }
+
+?>
